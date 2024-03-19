@@ -40,3 +40,4 @@ Then, you can run the **app.py** file and a Streamlit interface will appear.
 ```
 python -m streamlit run app.py
 ```
+> I have prepared a Vietnamese PDF file in the **sample** folder for you to test.
