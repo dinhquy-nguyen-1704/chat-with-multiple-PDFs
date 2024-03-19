@@ -36,3 +36,7 @@ Add the OpenAI API KEY in the **.env** file.
 ```python
 OPENAI_API_KEY=sk-...
 ```
+Then, you can run the **app.py** file and a Streamlit interface will appear.
+```
+python -m streamlit run app.py
+```
