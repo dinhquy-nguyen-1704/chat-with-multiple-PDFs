@@ -14,7 +14,7 @@ This GitHub repository features a friendly chat interface that leverages Retriev
 
 **🌟 Interact with PDFs:** The system allows interaction with multiple PDF files uploaded by users.
 
-**🌟 Summarization Feature:** Capable of summarizing and displaying the content of PDF files.
+**🌟 Summarization:** Capable of summarizing and displaying the content of PDF files.
 
 **🌟 Streamlit Interface:** The interface is designed with Streamlit, user-friendly and easy to use.
 
