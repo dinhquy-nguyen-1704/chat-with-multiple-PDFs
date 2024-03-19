@@ -31,3 +31,8 @@ conda activate chat-with-multiple-PDFs
 ```
 pip install -r requirements.txt
 ```
+### Using Streamlit
+Add the OpenAI API KEY in the **.env** file.
+```python
+OPENAI_API_KEY=
+```
