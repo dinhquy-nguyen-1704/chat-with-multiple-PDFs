@@ -1,9 +1,9 @@
-import streamlit as st
+import os
 from dotenv import load_dotenv
+import streamlit as st
 from langchain_core.messages import AIMessage, HumanMessage 
 from chat_utils import get_vectorstore_and_BM25, get_response, get_text_chunks, get_pdf_text
 from summarize import build_final_context, Prompts, summarize_chunk
-from templates import css
 from openai import OpenAI
 import queue
 import threading
@@ -12,6 +12,7 @@ import threading
 def main():
 
     load_dotenv()
+    openai_api_key = os.getenv('OPENAI_API_KEY')
 
     st.set_page_config(page_title="Chat with Multiple PDFs", page_icon=":books:")
     st.header("Chat with Multiple PDFs :books:")
@@ -27,7 +28,7 @@ def main():
 
         st.subheader("Your documents")  
         pdf_docs = st.file_uploader(
-            "Upload your PDFs here and click in 'process'", 
+            "Upload your PDFs here and click in 'Process'", 
             accept_multiple_files=True)  
         
         process_button = st.button("Process")
@@ -48,7 +49,7 @@ def main():
                     if "chunks" not in st.session_state:
                         st.session_state.chunks = get_text_chunks(get_pdf_text(pdf_docs))
 
-                    llm = OpenAI()
+                    llm = OpenAI(api_key=openai_api_key)
                     results_queue = queue.Queue()  
 
                     threads = []
@@ -75,15 +76,24 @@ def main():
                 st.write(final_response.choices[0].message.content)
 
             else:
-                st.warning("Please process the PDFs.")
+                if not uploaded:
+                    st.warning("Please upload PDFs first.")
+                else:
+                    st.warning("Please process the PDFs.")
 
 
     user_query = st.chat_input("Type your mesage here ...")
 
     if user_query is not None and user_query != "":
-        response = get_response(user_query, st.session_state.bm25_retriever)
-        st.session_state.chat_history.append(HumanMessage(content=user_query))
-        st.session_state.chat_history.append(AIMessage(content=response))
+        # Check if user has uploaded PDF files
+        if not uploaded:
+            st.warning("Please upload PDFs first.")
+        else:
+            # Get response from the model based on user's message
+            response = get_response(user_query, st.session_state.bm25_retriever)
+            # Append user's message and response to the chat history
+            st.session_state.chat_history.append(HumanMessage(content=user_query))
+            st.session_state.chat_history.append(AIMessage(content=response))
 
     for message in st.session_state.chat_history:
         if isinstance(message, AIMessage):

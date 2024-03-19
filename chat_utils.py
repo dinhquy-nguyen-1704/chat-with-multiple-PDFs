@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 import streamlit as st
 from PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -10,6 +12,8 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.retrievers import BM25Retriever, EnsembleRetriever
 
 
+load_dotenv()
+openai_api_key = os.getenv('OPENAI_API_KEY')
 
 def get_pdf_text(pdf_docs):
     text = ""
@@ -34,7 +38,7 @@ def get_vectorstore_and_BM25(pdf_docs):
     raw_text = get_pdf_text(pdf_docs)
     
     text_chunks = get_text_chunks(raw_text)
-    emb_model = OpenAIEmbeddings()
+    emb_model = OpenAIEmbeddings(api_key=openai_api_key)
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=emb_model)
 
     bm25_retriever = BM25Retriever.from_texts(texts=text_chunks, embedding=emb_model)
@@ -45,7 +49,7 @@ def get_context_retriever_chain(vectorstore, bm25_retriever, k=2):
 
     bm25_retriever.k = k
 
-    llm = ChatOpenAI()
+    llm = ChatOpenAI(api_key=openai_api_key)
     faiss_retriever = vectorstore.as_retriever()
 
     ensemble_retriever = EnsembleRetriever(
