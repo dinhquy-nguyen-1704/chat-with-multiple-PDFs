@@ -8,7 +8,7 @@ This GitHub repository features a friendly chat interface that leverages Retriev
   <em>Streamlit Interface</em>
 </p>
 
-> Key features:
+### Key features:
 
 **🌟 RAG with Ensemble Retriever:** Utilizes the RAG technique combined with an Ensemble Retriever (Hybrid Search) to create a dynamic chat interface.
 
