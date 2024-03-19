@@ -17,8 +17,6 @@ def main():
     st.set_page_config(page_title="Chat with Multiple PDFs", page_icon=":books:")
     st.header("Chat with Multiple PDFs :books:")
 
-    st.write(css, unsafe_allow_html=True)
-
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = [
             AIMessage(content="Hello, I'm a bot. How can I help you today?"),
@@ -85,15 +83,19 @@ def main():
     user_query = st.chat_input("Type your mesage here ...")
 
     if user_query is not None and user_query != "":
-        # Check if user has uploaded PDF files
+        # Check if PDF files have been uploaded
         if not uploaded:
             st.warning("Please upload PDFs first.")
+        # Check if PDF files have been processed
+        elif "vector_store" not in st.session_state:
+            st.warning("Please process the PDFs.")
         else:
             # Get response from the model based on user's message
             response = get_response(user_query, st.session_state.bm25_retriever)
             # Append user's message and response to the chat history
             st.session_state.chat_history.append(HumanMessage(content=user_query))
             st.session_state.chat_history.append(AIMessage(content=response))
+
 
     for message in st.session_state.chat_history:
         if isinstance(message, AIMessage):
