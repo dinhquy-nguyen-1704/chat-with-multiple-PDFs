@@ -17,3 +17,17 @@ This GitHub repository features a friendly chat interface that leverages Retriev
 **🌟 Summarization Feature:** Capable of summarizing and displaying the content of PDF files.
 
 **🌟 Streamlit Interface:** The interface is designed with Streamlit, user-friendly and easy to use.
+
+## 2. How to use?
+
+```
+git clone https://github.com/dinhquy-nguyen-1704/chat-with-multiple-PDFs.git
+cd chat-with-multiple-PDFs
+```
+```
+conda create -n chat-with-multiple-PDFs
+conda activate chat-with-multiple-PDFs
+```
+```
+pip install -r requirements.txt
+```
