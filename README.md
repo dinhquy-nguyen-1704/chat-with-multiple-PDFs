@@ -11,7 +11,6 @@ This GitHub repository features a friendly chat interface that leverages Retriev
 ### Key features:
 
 **🌟 RAG with Ensemble Retriever:** Utilizes the RAG technique with an Ensemble Retriever (Hybrid Search).
-
 **🌟 Interact with PDFs:** The system allows interaction with multiple PDF files uploaded by users.
 
 **🌟 Summarization Feature:** Capable of summarizing and displaying the content of PDF files.
