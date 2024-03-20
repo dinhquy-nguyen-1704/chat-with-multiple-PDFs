@@ -25,7 +25,7 @@ git clone https://github.com/dinhquy-nguyen-1704/chat-with-multiple-PDFs.git
 cd chat-with-multiple-PDFs
 ```
 ```
-conda create -n chat-with-multiple-PDFs
+conda create -n chat-with-multiple-PDFs python=3.9.6
 conda activate chat-with-multiple-PDFs
 ```
 ```
