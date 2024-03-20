@@ -43,4 +43,4 @@ python -m streamlit run app.py
 > I have prepared a Vietnamese PDF file in the **sample** folder for you to test.
 ### Run on Colab
 I have also provided you with a Google Colab Notebook for the convenience of running code, you just need to replace your OPEN AI API in the .env file.
-![Open In Colab](https://colab.research.google.com/drive/1okCM7CxL4oDdivlG4nrjy37Hn-_Azimq?authuser=1#scrollTo=eHzY-ciU0-tK)
+[Open In Colab](https://colab.research.google.com/drive/1okCM7CxL4oDdivlG4nrjy37Hn-_Azimq?authuser=1#scrollTo=eHzY-ciU0-tK)
